@@ -76,7 +76,7 @@ mutations: {
 
 actions: {
     check_logged_in: function({ commit, state, dispatch }) {
-        fetch('http://localhost:3000/api/logged-in', { method: 'get' })
+        fetch('http://localhost:8000/api/logged-in', { method: 'get' })
             .then((response) => {
                 if (!response.ok) throw response;
 
@@ -123,7 +123,7 @@ actions: {
         });
     },
     load_subjects: function({ commit }) {
-        fetch('http://localhost:3000/api/subjects', { method: 'get' })
+        fetch('http://localhost:8000/admin/subjectss', { method: 'get' })
             .then((response) => {
                 if (!response.ok) throw response;
 
@@ -163,7 +163,7 @@ actions: {
     },
 
     new_subject: function({ commit }, subject) {
-        fetch('http://localhost:3000/api/subjects', {
+        fetch('http://localhost:8000/subjectss', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -216,8 +216,8 @@ actions: {
             });
     },
 
-    load_subject_news: function({ commit }, subject_id) {
-        fetch(`http://localhost:3000/api/subjects/${subject_id}/news`, {
+    load_subject_news: function({ commit }, subjectss_id) {
+        fetch(`http://localhost:8000/admin/subjectss/${subjectss_id}/messages`, {
             method: 'get',
         })
             .then((response) => {
@@ -261,7 +261,7 @@ actions: {
 
     new_subject_news: function({ commit }, payload) {
         fetch(
-            `http://localhost:3000/api/subjects/${payload.subject_id}/news`,
+            `http://localhost:8000/admin/messages/`,
             {
                 method: 'POST',
                 headers: {
@@ -316,7 +316,7 @@ actions: {
             });
     },
     login: function({ commit }, payload) {
-        fetch(`http://localhost:3000/api/login`, {
+        fetch(`http://localhost:8000/api/login`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
@@ -331,6 +331,7 @@ actions: {
             .then((jsonData) => {
                 commit('set_user', jsonData);
                 commit('set_logged_in', true);
+
                 router.push({ path: '/' });
             })
             .catch((error) => {

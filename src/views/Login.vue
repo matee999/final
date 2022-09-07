@@ -72,8 +72,8 @@ export default {
     loginClick: function () {
       if (!this.checkFormValidity()) return;
       const data = JSON.stringify({
-        email: this.email,
-        password: this.password,
+        email: this.email ,
+        password: this.password
       });
       this.login(data);
     },

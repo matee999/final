@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <Header
-      :header="subject.name"
+      header=Skript
       subtitle=""
-      :description="subject.description"
+      description="Skript description"
     />
     <b-button variant="primary" v-b-modal.modal-create-subject-news
       >Create News</b-button
@@ -137,8 +137,9 @@ export default {
   computed: {
     ...mapState(["subjects", "subject_news", "user"]),
     subject: function () {
+
       for (let i = 0; i < this.subjects.length; i++)
-        if (this.subjects[i]._id === this.$route.params.id) {
+        if (this.subjects[i].id === this.$route.params.id) {
           return this.subjects[i];
         }
       return null;
@@ -201,7 +202,7 @@ export default {
         content: this.content,
       });
       this.new_subject_news({
-        subject_id: this.subject._id,
+        subject_id: 2,
         subject_news: subjectNewsData,
       });
       // Hide the modal manually
@@ -262,7 +263,7 @@ export default {
     if (!this.subject) {
       this.load_subject;
     }
-    this.load_subject_news(this.subject._id);
+    //this.load_subject_news(this.subject.id);
   },
 };
 </script>

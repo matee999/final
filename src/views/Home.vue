@@ -8,7 +8,7 @@
     />
     <b-container class="bv-example-row">
       <b-row cols="2">
-        <b-col v-for="subject in subjects" :key="subject._id">
+        <b-col v-for="subject in subjects" :key="subject.id">
           <b-card
             :header="subject.name"
             style="font-weight: bold; margin-top: 40px"
@@ -53,7 +53,7 @@ export default {
   methods: {
     ...mapActions(["load_subjects", "new_subject", "delete_subject"]),
     showSubjectNews: function (subject) {
-      router.push({ path: `/subject/${subject._id}` });
+      router.push({ path: `/subject/${subject.id}` });
     },
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();
